@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 body {
-    background: linear-gradient(135deg, #5169a1, #1e293b, #334155);
+    background: #5169a1;
     display: flex;
     align-items: center;
     justify-content: center;
