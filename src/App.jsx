@@ -26,6 +26,8 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // If validation passes, submit the form
     console.log(firstName, lastName, email, contact, gender, languages, resume, about);
 
     // Show success message
@@ -33,7 +35,7 @@ function App() {
     handleReset();
     setTimeout(() => {
       setSubmitSuccess(false); // Hide the success message after 3 seconds
-    }, 2000);
+    }, 3000);
   };
 
   const handleLanguageChange = (lang) => {
@@ -67,14 +69,14 @@ function App() {
     <div className="bg-white rounded-xl shadow-lg p-6 w-[800px] border-5 m-auto mt-10">
       <h1 className="text-xl font-bold text-sky-600 text-center mb-4">Form in React</h1>
       <form onSubmit={handleSubmit} className="space-y-3">
-        <TextInput label="First Name" value={firstName} setValue={setFirstName} required />
-        <TextInput label="Last Name" value={lastName} setValue={setLastName} required />
-        <TextInput label="Email" type="email" value={email} setValue={setEmail} required />
-        <TextInput label="Contact" type="tel" value={contact} setValue={setContact} required />
+        <TextInput label="First Name" value={firstName} setValue={setFirstName} required placeholder="Enter your first name" />
+        <TextInput label="Last Name" value={lastName} setValue={setLastName} required placeholder="Enter your last name" />
+        <TextInput label="Email" type="email" value={email} setValue={setEmail} required placeholder="Enter your email" />
+        <TextInput label="Contact" type="tel" value={contact} setValue={setContact} required placeholder="Enter your phone number" />
         <RadioGroup label="Gender" options={["male", "female"]} selected={gender} onChange={setGender} />
         <CheckboxGroup label="Programming Languages Known" options={languages} onChange={handleLanguageChange} />
         <FileInput label="Upload Resume" onChange={setResume} ref={fileInputRef} />
-        <TextArea label="About" value={about} setValue={setAbout} required />
+        <TextArea label="About" value={about} setValue={setAbout} required placeholder="Tell us about yourself" />
 
         <div className="flex justify-around">
           <button
@@ -86,20 +88,18 @@ function App() {
           </button>
           <button
             type="submit"
-            onClick={handleSubmit}
             className="bg-sky-600 hover:bg-sky-800 text-white py-2 px-4 rounded-lg w-1/3"
           >
             Submit
           </button>
         </div>
-        {submitSuccess && (
-          <div className="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-green-500 text-white p-4 rounded-lg shadow-lg w-[90%] sm:w-[400px] text-center">
-          Form submitted successfully!
-          </div>
-        )}
       </form>
-
-       
+      
+      {submitSuccess && (
+        <div className="fixed top-5 left-1/2 transform -translate-x-1/2 bg-green-500 text-black font-bold p-4 rounded-lg shadow-lg w-[90%] sm:w-[400px] text-center">
+          Form submitted successfully!
+        </div>
+      )}
     </div>
   );
 }
